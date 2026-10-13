@@ -196,7 +196,7 @@ SOCIAL = {
     "youtube-miniatura-plantilla-1280x720": (thumbnail, "YouTube, base para miniaturas"),
     "youtube-marca-de-agua-150": (lambda: svg(150, 150, f'<g transform="scale({150 / 512:.5f})"><rect width="512" height="512" rx="104" fill="{NAVY}"/>{mark()}</g>'), "YouTube, marca de agua"),
     "linkedin-banner-perfil-1584x396": (lambda: banner(1584, 396, 1060, 198, 900, 250), "LinkedIn, perfil personal"),
-    "linkedin-portada-pagina-1128x191": (lambda: banner(1128, 191, 700, 96, 700, 130, tagline=False), "LinkedIn, página de empresa"),
+    "linkedin-portada-pagina-1512x256": (lambda: banner(1512, 256, 800, 128, 800, 176), "LinkedIn, página de empresa"),
     "x-encabezado-1500x500": (lambda: banner(1500, 500, 750, 215, 980, 270), "X, encabezado"),
     "facebook-portada-1640x624": (lambda: banner(1640, 624, 820, 312, 1050, 300), "Facebook, portada"),
     "instagram-publicacion-1080x1350": (lambda: stacked(1080, 1350, 0.7), "Instagram y Threads, publicación"),
