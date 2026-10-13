@@ -1,10 +1,12 @@
-"""Genera el logo y el kit de redes de El Ingeniero de Datos.
+"""Genera el logo y el kit de redes de EL INGENIERO DE DATOS.
 
 Uso:  python scripts/build.py
 Salida: logo/*.svg, social/*.svg, favicon/* y sus PNG en png/.
 
 Los SVG son la fuente de verdad. El texto se convierte a trazos, así que los
 archivos no dependen de tener la tipografía instalada.
+
+El lema de los banners se edita en scripts/lema.txt.
 """
 from __future__ import annotations
 
@@ -29,7 +31,7 @@ YELLOW_TOP = "#FFD84D" # tapa del cilindro
 WHITE = "#FFFFFF"
 MIST = "#C9D3E0"       # texto secundario sobre marino
 
-TAGLINE = "Ingeniería de datos en español, con proyectos reales"
+TAGLINE = (Path(__file__).resolve().parent / "lema.txt").read_text(encoding="utf-8").strip()
 
 
 # --------------------------------------------------------------------------- tipografía
@@ -135,7 +137,7 @@ def background(w: int, h: int, dots: bool = True, radius: int = 0) -> str:
 
 def svg(w: int, h: int, body: str) -> str:
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" '
-            f'role="img" aria-label="El Ingeniero de Datos">{body}</svg>\n')
+            f'role="img" aria-label="EL INGENIERO DE DATOS">{body}</svg>\n')
 
 
 def banner(w, h, cx, cy, max_w, max_h, tagline=True):
