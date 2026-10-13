@@ -1,0 +1,45 @@
+name: Generar assets de marca
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/**"
+      - "requirements.txt"
+      - ".github/workflows/build.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-assets
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Instalar dependencias
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcairo2
+          pip install -r requirements.txt
+      - name: Generar SVG, PNG y favicons
+        run: python scripts/build.py
+      - name: Publicar los archivos generados
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add logo social favicon png
+          if git diff --cached --quiet; then
+            echo "Sin cambios en los assets."
+          else
+            git commit -m "chore: regenerar assets de marca"
+            git push
+          fi
