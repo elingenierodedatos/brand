@@ -27,8 +27,8 @@ Los PNG listos para subir están en [`png/social/`](png/social). El SVG equivale
 | YouTube | Banner del canal | `youtube-banner-2560x1440.png` | 2560 × 1440 |
 | YouTube | Base para miniaturas | `youtube-miniatura-plantilla-1280x720.png` | 1280 × 720 |
 | YouTube | Marca de agua | `youtube-marca-de-agua-150.png` | 150 × 150 |
-| LinkedIn | Banner del perfil | `linkedin-banner-perfil-1584x396.png` | 1584 × 396 |
-| LinkedIn | Portada de página | `linkedin-portada-pagina-1128x191.png` | 1128 × 191 |
+| LinkedIn | Portada de página de empresa | `linkedin-portada-pagina-1512x256.png` | 1512 × 256 |
+| LinkedIn | Banner de perfil personal | `linkedin-banner-perfil-1584x396.png` | 1584 × 396 |
 | Threads e Instagram | Publicación | `instagram-publicacion-1080x1350.png` | 1080 × 1350 |
 | Instagram | Historia | `instagram-historia-1080x1920.png` | 1080 × 1920 |
 | Spotify y Apple Podcasts | Portada | `podcast-portada-3000.png` | 3000 × 3000 |
@@ -42,7 +42,8 @@ Notas de uso:
 
 - El avatar deja margen para el recorte circular. Sirve tal cual en YouTube, LinkedIn, Threads, Instagram, X, Discord y GitHub.
 - En el banner de YouTube el contenido vive en el área segura central (1546 × 423), que es lo único visible en todos los dispositivos.
-- En el banner de LinkedIn el contenido va a la derecha para no quedar debajo de la foto de perfil.
+- La página de empresa de LinkedIn exige la portada a 1512 × 256 exactos, en PNG o JPEG de hasta 3 MB; el logotipo de la página va a 400 × 400 y sirve el avatar.
+- En el banner de perfil personal de LinkedIn el contenido va a la derecha para no quedar debajo de la foto.
 - Las medidas son las recomendadas por cada plataforma al momento de crear el kit; conviene revisarlas si alguna red cambia su diseño.
 - El lema de los banners sale de [`scripts/lema.txt`](scripts/lema.txt). Al cambiar ese archivo, los banners se regeneran solos.
 
