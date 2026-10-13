@@ -1,17 +1,21 @@
 # brand
 
-Identidad visual de **EL INGENIERO DE DATOS**: nombre, logo, colores, tipografía y las piezas a la medida de cada red social.
+Identidad visual de **EL INGENIERO DE DATOS**: nombre, lema, logo, colores, tipografía y las piezas a la medida de cada red social.
 
 El logo son unas llaves de código que encierran un cilindro de datos: código y datos, el oficio en una sola forma.
 
 ![Logo de EL INGENIERO DE DATOS](png/logo/eid-logo-horizontal-oscuro.png)
 
-## Nombre
+## Nombre y lema
 
 La marca se escribe **siempre en mayúsculas: EL INGENIERO DE DATOS**. Aplica en el sitio, las redes, los documentos y cualquier texto corrido.
 
 - Correcto: EL INGENIERO DE DATOS
 - Incorrecto: El Ingeniero de Datos, el ingeniero de datos, EID como nombre público
+
+Lema: **Ensúciate las manos con datos reales.**
+
+Titular descriptivo para el sitio y las bios: "Aprende ingeniería de datos construyendo tu portafolio".
 
 ## Qué archivo usar en cada red
 
@@ -40,7 +44,7 @@ Notas de uso:
 - En el banner de YouTube el contenido vive en el área segura central (1546 × 423), que es lo único visible en todos los dispositivos.
 - En el banner de LinkedIn el contenido va a la derecha para no quedar debajo de la foto de perfil.
 - Las medidas son las recomendadas por cada plataforma al momento de crear el kit; conviene revisarlas si alguna red cambia su diseño.
-- El lema de los banners es provisional hasta cerrar la narrativa de marca. Se cambia en la constante `TAGLINE` del script.
+- El lema de los banners sale de [`scripts/lema.txt`](scripts/lema.txt). Al cambiar ese archivo, los banners se regeneran solos.
 
 ## Logo
 
@@ -91,10 +95,11 @@ En los SVG el texto está convertido a trazos, así que no hace falta tener la f
 - No girarlo, deformarlo ni añadirle sombras o degradados.
 - No colocarlo sobre fotos o fondos con poco contraste; usar la versión con fondo marino.
 - Dejar alrededor un margen libre de al menos el ancho de una llave.
+- No añadir el símbolo ® al nombre mientras la marca no esté registrada.
 
 ## Cómo se generan los archivos
 
-Todo sale de [`scripts/build.py`](scripts/build.py): los SVG, los PNG y los favicons. El workflow `.github/workflows/build.yml` corre el script en cada cambio a `main` y publica los archivos generados en el repo.
+Todo sale de [`scripts/build.py`](scripts/build.py): los SVG, los PNG y los favicons. El workflow `.github/workflows/build.yml` corre el script en cada cambio dentro de `scripts/` en `main` y publica los archivos generados en el repo.
 
 Para generarlos en local:
 
