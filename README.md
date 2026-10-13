@@ -1,10 +1,17 @@
 # brand
 
-Identidad visual de **El Ingeniero de Datos**: logo, colores, tipografía y las piezas a la medida de cada red social.
+Identidad visual de **EL INGENIERO DE DATOS**: nombre, logo, colores, tipografía y las piezas a la medida de cada red social.
 
 El logo son unas llaves de código que encierran un cilindro de datos: código y datos, el oficio en una sola forma.
 
-![Logo de El Ingeniero de Datos](png/logo/eid-logo-horizontal-oscuro.png)
+![Logo de EL INGENIERO DE DATOS](png/logo/eid-logo-horizontal-oscuro.png)
+
+## Nombre
+
+La marca se escribe **siempre en mayúsculas: EL INGENIERO DE DATOS**. Aplica en el sitio, las redes, los documentos y cualquier texto corrido.
+
+- Correcto: EL INGENIERO DE DATOS
+- Incorrecto: El Ingeniero de Datos, el ingeniero de datos, EID como nombre público
 
 ## Qué archivo usar en cada red
 
@@ -74,6 +81,7 @@ Reglas de contraste (WCAG):
 
 - Títulos y logo: Bold, en mayúsculas.
 - Texto de apoyo en piezas gráficas: SemiBold.
+- Cuerpo de texto en el sitio: [Barlow](https://fonts.google.com/specimen/Barlow).
 
 En los SVG el texto está convertido a trazos, así que no hace falta tener la fuente instalada para usarlos.
 
