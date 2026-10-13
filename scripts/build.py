@@ -7,10 +7,14 @@ Los SVG son la fuente de verdad. El texto se convierte a trazos, así que los
 archivos no dependen de tener la tipografía instalada.
 
 El lema de los banners se edita en scripts/lema.txt.
+Las piezas puntuales (anuncios, campañas) viven en scripts/extra_*.py: cada
+archivo define piezas(b), que recibe este módulo y devuelve {nombre: svg}.
 """
 from __future__ import annotations
 
+import importlib.util
 import io
+import sys
 import urllib.request
 from pathlib import Path
 
@@ -226,6 +230,15 @@ def main() -> None:
         text = make()
         (ROOT / "social" / f"{name}.svg").write_text(text, encoding="utf-8")
         png(text, ROOT / "png" / "social" / f"{name}.png")
+    extras = 0
+    for extra in sorted(Path(__file__).resolve().parent.glob("extra_*.py")):
+        spec = importlib.util.spec_from_file_location(extra.stem, extra)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        for name, text in module.piezas(sys.modules[__name__]).items():
+            (ROOT / "social" / f"{name}.svg").write_text(text, encoding="utf-8")
+            png(text, ROOT / "png" / "social" / f"{name}.png")
+            extras += 1
     icon = favicon()
     (ROOT / "favicon" / "favicon.svg").write_text(icon, encoding="utf-8")
     for size in FAVICON_SIZES:
@@ -233,7 +246,7 @@ def main() -> None:
     buffer = io.BytesIO()
     cairosvg.svg2png(bytestring=icon.encode(), write_to=buffer, output_width=256, output_height=256)
     Image.open(buffer).save(ROOT / "favicon" / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
-    print(f"{len(LOGO)} logos, {len(SOCIAL)} piezas de redes y {len(FAVICON_SIZES) + 2} favicons generados.")
+    print(f"{len(LOGO)} logos, {len(SOCIAL) + extras} piezas de redes y {len(FAVICON_SIZES) + 2} favicons generados.")
 
 
 if __name__ == "__main__":
