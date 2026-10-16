@@ -54,7 +54,7 @@ def portada(b, w, h):
     body += b.BOLD.path("DE DATOS", x, h * 0.20 + 520 * u, size, b.YELLOW, tracking=0.0)
     body += b.SEMI.path("Aprende Python desde cero limpiando datos reales.", x, h * 0.20 + 630 * u,
                         54 * u, b.MIST, tracking=0.01)
-    body += b.SEMI.path("9 LECCIONES  ·  1 PROYECTO  ·  470 PRUEBAS", x, h * 0.20 + 712 * u,
+    body += b.SEMI.path("9 LECCIONES  ·  1 PROYECTO  ·  475 PRUEBAS", x, h * 0.20 + 712 * u,
                         34 * u, b.MIST, tracking=0.22)
     body += _firma(b, w, h, u * 1.5)
     return b.svg(w, h, body)
