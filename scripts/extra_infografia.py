@@ -94,6 +94,26 @@ INFOGRAFIAS = {
         ],
         "cierre": ["*LO QUE SÍ: UNA HORA AL DÍA.", "elingenierodedatos.com"],
     },
+    "curso-gratis-python": {
+        "etiqueta": "INGENIERÍA DE DATOS  ·  EN ESPAÑOL  ·  9 LECCIONES",
+        "titulo": ["CURSO GRATIS", "*DE PYTHON"],
+        "bloques": [
+            ("PARA QUIÉN", [
+                "Para quien quiere entrar a datos",
+                "y nunca ha programado.",
+            ]),
+            ("QUÉ VAS A HACER", [
+                "Limpiar un archivo real lleno de errores,",
+                "rechazar lo que no sirve y dejar",
+                "escrito por qué.",
+            ]),
+            ("CÓMO SABES QUE VAS BIEN", [
+                "470 pruebas automáticas califican tu avance.",
+                "El código queda en tu GitHub.",
+            ]),
+        ],
+        "cierre": ["*EMPIEZA EL 27 DE OCTUBRE", "elingenierodedatos.com"],
+    },
 }
 
 
