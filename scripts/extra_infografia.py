@@ -114,6 +114,25 @@ INFOGRAFIAS = {
         ],
         "cierre": ["*EMPIEZA EL 27 DE OCTUBRE", "elingenierodedatos.com"],
     },
+    "leccion-0-hoy": {
+        "etiqueta": "CURSO GRATIS DE PYTHON  ·  LECCIÓN 0",
+        "titulo": ["HOY SALE", "*LA LECCIÓN 0"],
+        "bloques": [
+            ("QUÉ INSTALAS", [
+                "Python, Git y Visual Studio Code,",
+                "en Windows, macOS o Linux.",
+            ]),
+            ("QUÉ HACES", [
+                "Creas tu copia del curso en GitHub",
+                "y corres tu primera prueba con pytest.",
+            ]),
+            ("CÓMO SIGUE", [
+                "Una lección nueva cada martes a las 10:00.",
+                "Gratis y en español.",
+            ]),
+        ],
+        "cierre": ["*YA ESTÁ EN YOUTUBE", "elingenierodedatos.com"],
+    },
 }
 
 
