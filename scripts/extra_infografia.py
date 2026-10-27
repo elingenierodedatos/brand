@@ -133,6 +133,28 @@ INFOGRAFIAS = {
         ],
         "cierre": ["*YA ESTÁ EN YOUTUBE", "elingenierodedatos.com"],
     },
+    "data-warehouse-en-60-segundos": {
+        "etiqueta": "EXTRA  ·  ¿QUÉ ES UN DATA WAREHOUSE?",
+        "titulo": ["DATA WAREHOUSE", "*EN 60 SEGUNDOS"],
+        "bloques": [
+            ("QUÉ ES", [
+                "Una base de datos aparte, construida para",
+                "responder preguntas del negocio",
+                "sin tocar la operación.",
+            ]),
+            ("POR QUÉ EXISTE", [
+                "La base de tu aplicación atiende clientes.",
+                "Un reporte que recorre millones de filas",
+                "ahí mismo le quita memoria y conexiones.",
+            ]),
+            ("CUÁNDO LO NECESITAS", [
+                "Cuando tus reportes compiten con tus clientes",
+                "por la misma base. O cuando la misma pregunta",
+                "da dos números según quién la haga.",
+            ]),
+        ],
+        "cierre": ["*EL VIDEO COMPLETO YA ESTÁ EN YOUTUBE", "elingenierodedatos.com"],
+    },
 }
 
 
