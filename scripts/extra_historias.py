@@ -49,5 +49,29 @@ def historia(b, cfg: dict) -> str:
     return b.svg(W, H, body)
 
 
+def publicacion(b, cfg: dict) -> str:
+    """Misma pieza en 1080 x 1350 para el feed de Instagram, sin flecha de sticker."""
+    w, h = 1080, 1350
+    body = b.background(w, h) + f'<rect width="18" height="{h}" fill="{b.YELLOW}"/>'
+    cx = w / 2
+    uno, dos = cfg["titular"]
+    body += b.SEMI.path("CURSO GRATIS DE PYTHON PARA DATOS", cx, 130, 36, b.MIST, tracking=0.12, anchor="middle")
+    body += b.BOLD.path(uno, cx, 270, 130, b.WHITE, anchor="middle")
+    body += b.BOLD.path(dos, cx, 400, 130, b.YELLOW, anchor="middle")
+    datos = base64.b64encode((PNG / cfg["miniatura"]).read_bytes()).decode()
+    ancho, x0, y0 = 960, (w - 960) / 2, 460
+    alto = ancho * 720 / 1280
+    body += (f'<rect x="{x0 - 6}" y="{y0 - 6}" width="{ancho + 12}" height="{alto + 12}" rx="22" fill="{b.YELLOW}"/>'
+             f'<image href="data:image/png;base64,{datos}" x="{x0}" y="{y0}" width="{ancho}" height="{alto}"/>')
+    a1, a2 = cfg["apoyo"]
+    y = y0 + alto + 110
+    body += b.SEMI.path(a1, cx, y, 52, b.WHITE, tracking=0.01, anchor="middle")
+    body += b.SEMI.path(a2, cx, y + 66, 52, b.WHITE, tracking=0.01, anchor="middle")
+    return b.svg(w, h, body)
+
+
 def piezas(b) -> dict[str, str]:
-    return {nombre: historia(b, cfg) for nombre, cfg in HISTORIAS.items()}
+    out = {nombre: historia(b, cfg) for nombre, cfg in HISTORIAS.items()}
+    for nombre, cfg in HISTORIAS.items():
+        out[nombre.replace("historia-", "publicacion-").replace("1080x1920", "1080x1350")] = publicacion(b, cfg)
+    return out
