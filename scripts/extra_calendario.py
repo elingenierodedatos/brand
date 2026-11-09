@@ -15,6 +15,7 @@ Tipos de pieza (color del chip):
   short     contorno amarillo   shorts en YouTube, TikTok y Reels
   lanza     contorno blanco     lanzamiento con enlace (Threads, IG, Discord, LinkedIn)
   organico  marino claro        Threads, LinkedIn e Instagram sin enlace
+  extra     contorno verde      contenido extra del Plan 1K, sale de NotebookLM (v5)
   tarea     gris punteado       lo que hace Elmer, no se publica
 """
 
@@ -90,6 +91,7 @@ def _colores(b, tipo):
         "lanza": (b.NAVY_SOFT, b.WHITE, b.WHITE, b.WHITE),
         "organico": (b.NAVY_SOFT, b.NAVY_SOFT, b.WHITE, b.MIST),
         "tarea": ("none", b.MIST, b.MIST, b.MIST),
+        "extra": (b.NAVY_SOFT, GREEN, GREEN, b.WHITE),
     }[tipo]
 
 
@@ -114,7 +116,7 @@ def _chip(b, x, y, w, hora, red, tipo, lineas):
     return out, alto
 
 
-def calendario(b):
+def calendario(b, leyenda_v5: bool = False):
     body = b.background(W, H) + f'<rect width="18" height="{H}" fill="{b.YELLOW}"/>'
     body += b.SEMI.path(VIGENCIA, MARGEN, 76, 26, b.MIST, tracking=0.2)
     body += b.BOLD.path("QUÉ SE PUBLICA", MARGEN, 160, 88, b.WHITE, tracking=0.0)
@@ -156,6 +158,17 @@ def calendario(b):
         ("organico", "ORGÁNICO"),
         ("tarea", "TAREA DE ELMER"),
     ]
+    if leyenda_v5:
+        leyenda = [
+            ("largo", "VIDEO LARGO"),
+            ("derivado", "PODCAST Y EXPLICADOR"),
+            ("live", "LIVE"),
+            ("short", "SHORT EN CINCO REDES"),
+            ("lanza", "LANZAMIENTO"),
+            ("organico", "ORGÁNICO"),
+            ("extra", "EXTRA NOTEBOOKLM"),
+            ("tarea", "TAREA DE ELMER"),
+        ]
     x = MARGEN
     for tipo, texto in leyenda:
         fondo, borde, _, _ = _colores(b, tipo)
@@ -175,5 +188,82 @@ def calendario(b):
     return b.svg(W, H, body)
 
 
+# ---------------------------------------------------------------- calendario v5
+# Plan 1K (9 de noviembre de 2026): el v4 tal cual, más cuatro shorts del roadmap
+# (lunes, miércoles, viernes y domingo a las 18:30 en las cinco redes) y la capa de
+# contenido extra que sale de un cuaderno de NotebookLM por semana (chips verdes).
+VIGENCIA_V5 = "CALENDARIO SEMANAL V5  ·  PLAN 1K  ·  DESDE EL 10 DE NOVIEMBRE DE 2026  ·  HORA DE CIUDAD DE MÉXICO"
+
+DIAS_V5 = [
+    ("LUNES", [
+        ("8:30", "LINKEDIN", "organico", ["Postura o experiencia", "con un capítulo"]),
+        ("12:30", "THREADS", "organico", ["Mito o tensión", "de un capítulo"]),
+        ("18:30", "SHORT", "short", ["Roadmap en las", "cinco redes"]),
+    ]),
+    ("MARTES", [
+        ("10:00", "YOUTUBE", "largo", ["LECCIÓN DEL CURSO"]),
+        ("10:15", "LANZAMIENTO", "lanza", ["Threads, IG y Discord"]),
+        ("12:30", "LINKEDIN", "lanza", ["La lección con enlace"]),
+        ("12:30", "THREADS", "extra", ["Dato de las tarjetas"]),
+        ("19:00", "INSTAGRAM", "extra", ["Carrusel (diapositivas)"]),
+    ]),
+    ("MIÉRCOLES", [
+        ("12:30", "THREADS", "extra", ["Encuesta (cuestionario)"]),
+        ("18:30", "SHORT", "short", ["Roadmap, cinco redes"]),
+        ("19:00", "LIVE", "live", ["Clínica, desde dic."]),
+        ("19:30", "THREADS", "organico", ["Vivencia (opcional)"]),
+        ("20:00", "HISTORIA IG", "extra", ["Quiz (cuestionario)"]),
+    ]),
+    ("JUEVES", [
+        ("8:30", "LINKEDIN", "extra", ["Carrusel PDF o tabla"]),
+        ("12:30", "YOUTUBE", "largo", ["CARRERA EN DATOS"]),
+        ("12:45", "LANZAMIENTO", "lanza", ["Threads, IG y Discord"]),
+        ("13:00", "LINKEDIN", "lanza", ["El episodio con enlace"]),
+        ("19:00", "THREADS", "extra", ["Dato de las tarjetas"]),
+    ]),
+    ("VIERNES", [
+        ("8:00", "PODCAST", "derivado", ["Audio del episodio", "del jueves"]),
+        ("8:15", "LANZAMIENTO", "lanza", ["Threads e historia IG", "con enlace a Spotify"]),
+        ("12:30", "LINKEDIN", "extra", ["Encuesta", "(cuestionario)"]),
+        ("18:30", "SHORT", "short", ["Roadmap en las", "cinco redes"]),
+    ]),
+    ("SÁBADO", [
+        ("10:00", "YOUTUBE", "derivado", ["EXPLICADOR quincenal"]),
+        ("10:15", "LANZAMIENTO", "lanza", ["Threads e historia IG"]),
+        ("12:30", "TRES REDES", "extra", ["Infografía o mapa"]),
+        ("TARDE", "GRABACIÓN", "tarea", ["Episodio y lección"]),
+    ]),
+    ("DOMINGO", [
+        ("MAÑANA", "REVISIÓN", "tarea", ["Seguidores, Studio y", "aprobar textos"]),
+        ("TARDE", "CUADERNO", "tarea", ["Un cuaderno: 4 o 5", "elementos de Studio"]),
+        ("18:30", "SHORT", "short", ["Roadmap en las", "cinco redes"]),
+    ]),
+]
+
+RESUMEN_V5 = [
+    ("2", "LARGOS"),
+    ("4", "SHORTS"),
+    ("1", "PODCAST"),
+    ("3 A 4", "LANZAMIENTOS"),
+    ("8", "EXTRA"),
+    ("1 / 2", "LIVE (DIC)"),
+]
+
+RECORTE_V5 = ("SI NO ALCANZA EL TIEMPO SE RECORTA: HISTORIA CON QUIZ, ENCUESTA DE LINKEDIN, THREADS OPCIONAL.  "
+              "NUNCA LA LECCIÓN, EL EPISODIO, LOS SHORTS NI LOS LANZAMIENTOS.")
+NOTA_V5 = ("META: 1,000 SEGUIDORES EN CADA RED AL 31 DE DICIEMBRE.  LO VERDE SALE DE UN CUADERNO DE NOTEBOOKLM "
+           "POR SEMANA Y SE REDISEÑA CON LA MARCA.  20 MIN DIARIOS DE COMUNIDAD.")
+
+
+def calendario_v5(b):
+    global VIGENCIA, DIAS, RESUMEN, RECORTE, NOTA
+    guardado = (VIGENCIA, DIAS, RESUMEN, RECORTE, NOTA)
+    VIGENCIA, DIAS, RESUMEN, RECORTE, NOTA = VIGENCIA_V5, DIAS_V5, RESUMEN_V5, RECORTE_V5, NOTA_V5
+    try:
+        return calendario(b, leyenda_v5=True)
+    finally:
+        VIGENCIA, DIAS, RESUMEN, RECORTE, NOTA = guardado
+
+
 def piezas(b) -> dict[str, str]:
-    return {"calendario-semanal-v4-1920x1080": calendario(b)}
+    return {"calendario-semanal-v4-1920x1080": calendario(b), "calendario-semanal-v5-1920x1080": calendario_v5(b)}
