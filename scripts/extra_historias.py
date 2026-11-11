@@ -23,6 +23,11 @@ HISTORIAS = {
         "titular": ("YA SALIÓ", "LA LECCIÓN 2"),
         "apoyo": ("Recorrer una lista con un for", "y acumular el total, vuelta por vuelta"),
     },
+    "historia-leccion-03-1080x1920": {
+        "miniatura": "curso-python-miniatura-03-1280x720.png",
+        "titular": ("YA SALIÓ", "LA LECCIÓN 3"),
+        "apoyo": ("Tu código aprende a preguntar", "antes de actuar: if, elif, else y while"),
+    },
 }
 
 
