@@ -28,7 +28,16 @@ HISTORIAS = {
         "titular": ("YA SALIÓ", "LA LECCIÓN 3"),
         "apoyo": ("Tu código aprende a preguntar", "antes de actuar: if, elif, else y while"),
     },
+    "historia-explicador-02-1080x1920": {
+        "miniatura": "../youtube/miniatura-explicador-ep02-v2-1280x720.png",
+        "encabezado": "SERIE EXPLICADORES · EPISODIO 2",
+        "titular": ("YA SALIÓ", "EL MODELO ESTRELLA"),
+        "tam": 104,
+        "apoyo": ("Un ticket de 100 pesos que suma 400", "y cómo se evita, en 7 minutos"),
+    },
 }
+
+ENCABEZADO = "CURSO GRATIS DE PYTHON PARA DATOS"
 
 
 def historia(b, cfg: dict) -> str:
@@ -36,9 +45,10 @@ def historia(b, cfg: dict) -> str:
     cx = W / 2
 
     uno, dos = cfg["titular"]
-    body += b.SEMI.path("CURSO GRATIS DE PYTHON PARA DATOS", cx, 330, 40, b.MIST, tracking=0.12, anchor="middle")
-    body += b.BOLD.path(uno, cx, 500, 150, b.WHITE, anchor="middle")
-    body += b.BOLD.path(dos, cx, 650, 150, b.YELLOW, anchor="middle")
+    body += b.SEMI.path(cfg.get("encabezado", ENCABEZADO), cx, 330, 40, b.MIST, tracking=0.12, anchor="middle")
+    t = cfg.get("tam", 150)
+    body += b.BOLD.path(uno, cx, 500, t, b.WHITE, anchor="middle")
+    body += b.BOLD.path(dos, cx, 650, t, b.YELLOW, anchor="middle")
 
     # Miniatura de la lección con borde amarillo.
     datos = base64.b64encode((PNG / cfg["miniatura"]).read_bytes()).decode()
@@ -65,9 +75,10 @@ def publicacion(b, cfg: dict) -> str:
     body = b.background(w, h) + f'<rect width="18" height="{h}" fill="{b.YELLOW}"/>'
     cx = w / 2
     uno, dos = cfg["titular"]
-    body += b.SEMI.path("CURSO GRATIS DE PYTHON PARA DATOS", cx, 130, 36, b.MIST, tracking=0.12, anchor="middle")
-    body += b.BOLD.path(uno, cx, 270, 130, b.WHITE, anchor="middle")
-    body += b.BOLD.path(dos, cx, 400, 130, b.YELLOW, anchor="middle")
+    body += b.SEMI.path(cfg.get("encabezado", ENCABEZADO), cx, 130, 36, b.MIST, tracking=0.12, anchor="middle")
+    t = cfg.get("tam", 150) * 130 / 150
+    body += b.BOLD.path(uno, cx, 270, t, b.WHITE, anchor="middle")
+    body += b.BOLD.path(dos, cx, 400, t, b.YELLOW, anchor="middle")
     datos = base64.b64encode((PNG / cfg["miniatura"]).read_bytes()).decode()
     ancho, x0, y0 = 960, (w - 960) / 2, 460
     alto = ancho * 720 / 1280
